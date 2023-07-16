@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ user.name }}</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>Account Balance: {{ user.account_balance }}</p>
+    <p>Receice Fund:{{amount}} </p>
+
+    <div style="padding:40px;box-shadow:0px 0px 5px 5px rgba(0, 0, 0, 0.123);width:30rem;margin:3rem;">
+        <h2>Fund Transfer</h2>
+        <form method="post" action="{% url 'money_transfer' %}">
+
+            {% csrf_token %}
+            <label for="remail">Recipient's Email:</label>
+            <input type="email" name="remail" required> <br><br>
+
+            <label for="rname">Recipient's Name:</label>
+            <input type="text" name="rname" required> <br><br>
+
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" required> <br><br>
+
+            <button type="submit">Transfer</button> <br><br>
+
+        </form>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
